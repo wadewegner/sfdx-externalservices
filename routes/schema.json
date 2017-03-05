@@ -1,0 +1,28 @@
+{
+   "$schema":"http://interagent.github.io/interagent-hyper-schema",
+   "title":"Sample Service",
+   "description":"Sample service example",
+   "properties":{
+      "sampleService":{
+         "$ref":"#/definitions/sampleService"
+      }
+   },
+   "definitions":{
+      "sampleService":{
+         "title":"Sample service",
+         "description":"Sample service example.",
+         "type":[
+            "object"
+         ],
+         "definitions":{
+            "a":{
+               "description":"a.",
+               "example":"1",
+               "type":[
+                  "int"
+               ]
+            }
+         }
+      }
+   }
+}
