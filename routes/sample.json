@@ -1,0 +1,101 @@
+{
+   "$schema":"http://interagent.github.io/interagent-hyper-schema",
+   "title":"Credit Decision Service",
+   "description":"External service example for Dreamforce",
+   "properties":{
+      "creditDecision":{
+         "$ref":"#/definitions/creditDecision"
+      }
+   },
+   "definitions":{
+      "creditDecision":{
+         "title":"Credit Decision",
+         "description":"Specifies what payment terms are offered, based on credit rating.",
+         "type":[
+            "object"
+         ],
+         "properties":{
+            "orderAmount":{
+               "$ref":"#/definitions/creditDecision/definitions/orderAmount"
+            },
+            "accountId":{
+               "$ref":"#/definitions/creditDecision/definitions/accountId"
+            },
+            "creditRating":{
+               "$ref":"#/definitions/creditDecision/definitions/creditRating"
+            },
+            "paymentTerm":{
+               "$ref":"#/definitions/creditDecision/definitions/paymentTerm"
+            }
+         },
+         "definitions":{
+            "accountId":{
+               "description":"The unique identifier of the account.",
+               "example":"ACMECORP",
+               "type":[
+                  "string"
+               ]
+            },
+            "orderAmount":{
+               "description":"Total value of the order.",
+               "example":99999.99,
+               "type":[
+                  "number"
+               ]
+            },
+            "creditRating":{
+               "description":"The customer's current credit rating.",
+               "example":"Good",
+               "type":[
+                  "string"
+               ]
+            },
+            "paymentTerm":{
+               "description":"The payment terms offered (in days) when this decision was made.",
+               "example":"30 Days",
+               "type":[
+                  "string"
+               ]
+            }
+         },
+         "links":[
+            {
+               "title":"CreditRating",
+               "description":"Retrieve the credit rating associated with an order",
+               "href":"/account/{(%23%2Fdefinitions%2FcreditDecision%2Fdefinitions%2FaccountId)}/creditrating",
+               "method":"GET",
+               "targetSchema":{
+                  "$ref":"#/definitions/creditDecision/definitions/creditRating"
+               }
+            },
+            {
+               "title":"Evaluate",
+               "description":"Evaluates credit rating and decides what payment terms to offer.",
+               "href":"/paymentTerms",
+               "method":"POST",
+               "schema":{
+                  "type":[
+                     "object"
+                  ],
+                  "description":"Specifies input parameters to calculate payment term",
+                  "properties":{
+                     "orderAmount":{
+                        "$ref":"#/definitions/creditDecision/definitions/orderAmount"
+                     },
+                     "creditRating":{
+                        "$ref":"#/definitions/creditDecision/definitions/creditRating"
+                     }
+                  },
+                  "required":[
+                     "orderAmount",
+                     "creditRating"
+                  ]
+               },
+               "targetSchema":{
+                  "$ref":"#/definitions/creditDecision/definitions/paymentTerm"
+               }
+            }
+         ]
+      }
+   }
+}
