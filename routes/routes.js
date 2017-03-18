@@ -4,7 +4,7 @@ var appRouter = function(app) {
         // res.setHeader('Content-Type', 'application/json');
         // res.send(JSON.stringify({ a: 1 }, null, 3));
         res.setHeader('Content-Type', 'text/html');
-        res.sendStatus(200);
+        // res.sendStatus(200);
         res.send(1);
     });
 
