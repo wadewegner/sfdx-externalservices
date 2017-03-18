@@ -19,10 +19,21 @@
                "description":"a.",
                "example":"1",
                "type":[
-                  "int"
+                  "number"
                ]
             }
-         }
+         },
+         "links": [
+            {
+                "title": "MyAction",
+                "description": "This is my action",
+                "href": "/",
+                "method": "GET",
+                "targetSchema": {
+                    "$ref": "#/definitions/sampleService/definitions/a"
+                }
+            }
+         ]
       }
    }
 }
